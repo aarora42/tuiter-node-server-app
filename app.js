@@ -10,6 +10,7 @@ import "dotenv/config";
 
 
 const app = express();
+app.use(express.json());
 app.use( cors({
     credentials: true,
     origin: process.env.FRONTEND_URL,
@@ -29,10 +30,9 @@ app.use( cors({
   }
   app.use(session(sessionOptions));
 
-  app.use(
-    session(sessionOptions)
-  );  
-app.use(express.json());
+//   app.use(
+//     session(sessionOptions)
+//   );  
 TuitsController(app);
 HelloController(app);
 UserController(app);
