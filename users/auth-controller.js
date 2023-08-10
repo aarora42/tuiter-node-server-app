@@ -23,7 +23,7 @@ const AuthController = (app) => {
         console.log(user)
         if (user) {
         //   req.session["currentUser"] = user;
-        j_users = newUser;
+        j_users = user;
           res.json(user);
         } else {
           //  console.log("hisd")
