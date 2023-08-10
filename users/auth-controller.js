@@ -1,8 +1,6 @@
 import * as usersDao from "./users-dao.js";
 
- 
-
- 
+let j_users;
 
 const AuthController = (app) => {
     const register = (req, res) => {
@@ -13,7 +11,8 @@ const AuthController = (app) => {
           return;
         }
         const newUser = usersDao.createUser(req.body);
-        req.session["currentUser"] = newUser;
+        // req.session["currentUser"] = newUser;
+        j_users = newUser;
         res.json(newUser);
       };
 
@@ -23,7 +22,8 @@ const AuthController = (app) => {
         const user = usersDao.findUserByCredentials(username, password);
         console.log(user)
         if (user) {
-          req.session["currentUser"] = user;
+        //   req.session["currentUser"] = user;
+        j_users = newUser;
           res.json(user);
         } else {
           //  console.log("hisd")
@@ -32,7 +32,7 @@ const AuthController = (app) => {
       };
 
       const profile = (req, res) => {
-        const currentUser = req.session["currentUser"];
+        const currentUser = j_users;
         if (!currentUser) {
           res.sendStatus(404);
           return;
